@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users
+  get 'posts/index'
+  get 'posts/new'
+  get 'posts/show'
+  get 'posts/edit'
+  get 'home', to: 'home#home_page', as: :home
+  root to: redirect('home')
+  resources :posts do
+    resources :comments
+  end
+
 end

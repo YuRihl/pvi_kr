@@ -1,0 +1,54 @@
+<div class="fs-2">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/posts">All posts</a>
+            </li>
+        </ul>
+        <div class="fs-4 text-white ">
+          <% if user_signed_in? %>
+            <%= current_user.email %> | 
+            <%= link_to 'Log out', destroy_user_session_path, class: "text-decoration-none text-reset m-2", method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% else %>
+            <%= link_to 'Log in', new_user_session_path, class: "text-decoration-none text-reset m-2" %>
+          <% end %>
+        </div> 
+    </div>
+  </nav>
+
+  <div class="alert alert-light"><% notice %></div>
+  <div class="alert alert-light"><% alert %></div>
+
+  <%= form_for :post, url: post_path(@post), method: :patch do |f| %>
+    <% if @post.errors.any? %>
+      <div>
+        <h2>
+          <%= pluralize(@post.errors.count, "error") %> prohibited
+          this article from being saved:
+        </h2>
+        <ul>
+          <% @post.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="d-flex container-md ">
+      <%= f.label :title, class: "col-sm-1 col-form-label" %>
+      <%= f.text_field :title, class: "form-control form-control-lg" %>
+    </div>
+   
+    <div class="d-flex container-md">
+      <%= f.label :text, class: "col-sm-1 col-form-label" %>
+      <%= f.text_area :text, class: "form-control form-control-lg", rows: 10 %>
+    </div>
+   
+    <div class="d-flex justify-content-center mt-3">
+      <%= f.submit class: "btn btn-outline-dark btn-lg" %>
+    </div>
+  <% end %>
+</div>
