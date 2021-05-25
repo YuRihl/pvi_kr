@@ -18,7 +18,7 @@
           <% end %>
         </div> 
   </nav>
-  
+
   <div class="alert alert-light"><% notice %></div>
   <div class="alert alert-light"><% alert %></div>
 
@@ -34,4 +34,5 @@
         </li>
       </ul>
     <% end %>
+    <div class="d-flex justify-content-center"><%= paginate @posts %></div>
 </div>

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new edit index show create update destroy]
   def index
-    @posts = Post.order(created_at: :desc)
+    @posts = Post.page params[:page]
   end
 
   def new
