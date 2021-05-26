@@ -57,3 +57,5 @@ gem 'devise'
 gem 'will_paginate'
 
 gem 'kaminari'
+
+gem 'pundit'

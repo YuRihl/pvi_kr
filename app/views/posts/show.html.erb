@@ -11,7 +11,7 @@
         </ul>
         <div class="fs-4 text-white ">
           <% if user_signed_in? %>
-            <%= current_user.email %> | 
+            <%= current_user.username %> | 
             <%= link_to 'Log out', destroy_user_session_path, class: "text-decoration-none text-reset m-2", method: :delete, data: { confirm: 'Are you sure?' } %>
           <% else %>
             <%= link_to 'Log in', new_user_session_path, class: "text-decoration-none text-reset m-2" %>
